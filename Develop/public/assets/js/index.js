@@ -4,6 +4,9 @@ let saveNoteBtn;
 let newNoteBtn;
 let noteList;
 
+// added based on stanley video 3 6:30
+// const PORT = process.env.PORT || 3000;
+
 if (window.location.pathname === '/notes') {
   noteTitle = document.querySelector('.note-title');
   noteText = document.querySelector('.note-textarea');
@@ -178,3 +181,11 @@ if (window.location.pathname === '/notes') {
 }
 
 getAndRenderNotes();
+
+
+// added based on stanley video 3 6:30
+// app.listen(PORT, () => {
+//   console.log(`App is currently running on port ${PORT}`)
+// });
+
+

@@ -5,7 +5,6 @@ const PORT = process.env.PORT || 4000;
 const fs = require("fs");
 const { notStrictEqual } = require("assert");
 const notes = {};
-// const notes = "Test";
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("./public"));
@@ -25,6 +24,7 @@ app.get("/api/notes", (req,res) => {
 
 app.post("/api/notes", (req, res) => {
   const newNote = req.body;
+  console.log("Crating a new note.");
   console.log(newNote);
   notes.push(newNote);
 });

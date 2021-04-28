@@ -29,9 +29,8 @@ app.post("/api/notes", (req, res) => {
   const newNote = req.body;
   const id = uniqId()
   console.log("Crating a new note.");
-  let newNoteWId = newNote.concat(id)
-  console.log(newNoteWId);
-  dbFile.push(newNoteWId);
+  newNote.id = id;
+  dbFile.push(newNote);
   console.log(dbFile)
 });
 

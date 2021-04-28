@@ -6,6 +6,7 @@ const fs = require("fs");
 const { notStrictEqual } = require("assert");
 const dbFile = require("./db/db.json")
 const uniqId = require('uniqid');
+const { stringify } = require("querystring");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("./public"));
@@ -28,9 +29,9 @@ app.post("/api/notes", (req, res) => {
   const newNote = req.body;
   const id = uniqId()
   console.log("Crating a new note.");
-  const newNoteId = newNote + id;
-  console.log(newNoteId);
-  dbFile.push(newNoteId);
+  let newNoteWId = newNote.concat(id)
+  console.log(newNoteWId);
+  dbFile.push(newNoteWId);
   console.log(dbFile)
 });
 

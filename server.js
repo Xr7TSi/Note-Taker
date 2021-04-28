@@ -5,6 +5,7 @@ const PORT = process.env.PORT || 4000;
 const fs = require("fs");
 const { notStrictEqual } = require("assert");
 const notes = {};
+const dbFile = require("./db/db.json")
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("./public"));
@@ -26,7 +27,7 @@ app.post("/api/notes", (req, res) => {
   const newNote = req.body;
   console.log("Crating a new note.");
   console.log(newNote);
-  notes.push(newNote);
+  dbFile.push(newNote);
 });
 
 app.listen(PORT, () => {

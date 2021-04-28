@@ -1,7 +1,6 @@
 const express = require("express");
 const app = express();
 var path = require("path");
-const database = require("./db/db")
 const PORT = process.env.PORT || 4000;
 const fs = require("fs");
 const { notStrictEqual } = require("assert");
@@ -20,10 +19,9 @@ app.get("/notes", (req, res) => {
   res.sendFile(path.join(__dirname, "./public", "notes.html"));
 });
 
-// below route work.  Research why that is.
-app.route("/api/notes").get(function (req, res) {
-  res.json(database);
-});
+app.get("/api/notes"), (req,res) => {
+  res.json(path.join(__dirname, "./db", "/db.json"));
+};
 
 app.post("/api/notes", (req, res) => {
   const newNote = req.body;

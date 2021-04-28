@@ -4,11 +4,12 @@ var path = require("path");
 const PORT = process.env.PORT || 4000;
 const fs = require("fs");
 const { notStrictEqual } = require("assert");
-const notes = {};
 const dbFile = require("./db/db.json")
+const uniqId = require('uniqid');
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("./public"));
+
 
 // routes
 app.get("/", (req, res) => {
@@ -25,9 +26,12 @@ app.get("/api/notes", (req,res) => {
 
 app.post("/api/notes", (req, res) => {
   const newNote = req.body;
+  const id = uniqId()
   console.log("Crating a new note.");
-  console.log(newNote);
-  dbFile.push(newNote);
+  const newNoteId = newNote + id;
+  console.log(newNoteId);
+  dbFile.push(newNoteId);
+  console.log(dbFile)
 });
 
 app.listen(PORT, () => {

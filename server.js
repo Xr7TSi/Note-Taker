@@ -5,9 +5,9 @@ const PORT = process.env.PORT || 4000;
 const fs = require("fs");
 const { notStrictEqual } = require("assert");
 const notes = {};
+// const notes = "Test";
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-// app.use('/static', express.static(path.join(__dirname, "../Note-Taker/Develop/public")))
 app.use(express.static('./public'))
 
 // routes
@@ -25,7 +25,7 @@ app.get("/notes", (req, res) => {
 });
 
 app.get("/api/notes", (req, res) => {
-  res.json(__dirname, "../Note-Taker/Develop/db", "db.json")
+  res.json(__dirname, "./db", "db.json")
   });
 
 app.post("/api/notes", (req, res) => {

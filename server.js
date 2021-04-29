@@ -32,12 +32,30 @@ app.post("/api/notes", (req, res) => {
   dbFile.push(newNote);
   console.log(dbFile);
   fs.writeFile("./db/db.json", JSON.stringify(dbFile), (err) =>
-  err ? console.error(err) : console.log("Database updated!"));
+    err ? console.error(err) : res.redirect("/notes")
+  );
 });
 
-app.delete("/api/notes/:id", (req,res) => {
-  console.log("Delete request received.")
-})
+app.delete("/api/notes/:id", function (req, res) {
+  let jsonFilePath = path.join(__dirname, "/db/db.json");
+
+  for (let i = 0; i < dbFile.length; i++) {
+    if (dbFile[i].id == req.params.id) {
+      dbFile.splice(i, 1);
+      break;
+    }
+  }
+
+  fs.writeFileSync(jsonFilePath, JSON.stringify(dbFile), function (err) {
+    if (err) {
+      return console.log(err);
+    } else {
+      console.log("Your note was deleted!");
+    }
+  });
+  res.json(dbFile);
+});
+
 
 app.listen(PORT, () => {
   console.log(`App is currently running on port ${PORT}`);

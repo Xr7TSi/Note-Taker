@@ -31,9 +31,7 @@ app.post("/api/notes", (req, res) => {
   newNote.id = id;
   dbFile.push(newNote);
   console.log(dbFile);
-  // fs.writeFile("./db/db.json", (dbFile.toString()), (err) =>
-  // err ? console.error(err) : console.log("Database updated!"));
-  fs.writeFile("./db/db.json", dbFile, (err) =>
+  fs.writeFile("./db/db.json", JSON.stringify(dbFile), (err) =>
   err ? console.error(err) : console.log("Database updated!"));
 });
 

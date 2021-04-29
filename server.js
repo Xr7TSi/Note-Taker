@@ -47,7 +47,7 @@ app.delete("/api/notes/:id", (req, res) => {
     }
   }
 
-  fs.writeFileSync(jsonFilePath, JSON.stringify(dbFile), function (err) {
+  fs.writeFileSync(jsonFilePath, JSON.stringify(dbFile), (err) => {
     if (err) {
       return console.log(err);
     } else {

@@ -35,6 +35,10 @@ app.post("/api/notes", (req, res) => {
   err ? console.error(err) : console.log("Database updated!"));
 });
 
+app.delete("/api/notes/:id", (req,res) => {
+  console.log("Delete request received.")
+})
+
 app.listen(PORT, () => {
   console.log(`App is currently running on port ${PORT}`);
 });
